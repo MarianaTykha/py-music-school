@@ -16,8 +16,15 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
+from django.http import HttpResponse
+
+
+def home(request):
+    return HttpResponse("Welcome to Music School!")
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("musician/", include("musician.urls", namespace="musician")),
+    path("musician/", include("musician.urls")),
+    path("", home, name="home"),
 ]
